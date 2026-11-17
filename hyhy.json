@@ -1,0 +1,67 @@
+{
+  "status": "ok",
+  "completed_steps": ["B1", "B2", "B3", "B4", "B5"],
+  "failed_step": null,
+  "resume_from": null,
+  "intent": "ĐẶT_HÀNG",
+  "steps": [
+    {
+      "step": "B1",
+      "reasoning": "Tin nhắn dùng tiếng Việt, chứa từ cảm thán và dấu chấm than lặp ở cuối. Loại bỏ ký tự thừa để chuẩn hóa nội dung đặt hàng.",
+      "output": {
+        "clean_text": "Shop ơi ship cho Lan 2 áo thun trắng size M về 45 Nguyễn Trãi, Q5 nhé. SĐT 0912345678, giao chiều mai nha.",
+        "lang": "vi"
+      }
+    },
+    {
+      "step": "B2",
+      "reasoning": "Khách yêu cầu giao hàng ('ship cho Lan') kèm đầy đủ thông tin sản phẩm, địa chỉ và số điện thoại. Ý định thuộc nhóm ĐẶT_HÀNG.",
+      "output": {
+        "intent": "ĐẶT_HÀNG"
+      }
+    },
+    {
+      "step": "B3",
+      "reasoning": "Trích xuất được tên khách 'Lan', sản phẩm 'áo thun trắng size M' số lượng 2, SĐT hợp lệ 10 số '0912345678', địa chỉ '45 Nguyễn Trãi, Q5' và thời gian 'chiều mai'.",
+      "output": {
+        "customer_name": "Lan",
+        "items": [{"raw_name": "áo thun trắng size M", "qty": 2}],
+        "phone": "0912345678",
+        "address": "45 Nguyễn Trãi, Q5",
+        "delivery_time": "chiều mai"
+      }
+    },
+    {
+      "step": "B4",
+      "reasoning": "Đối chiếu danh mục: mã AT-TRG-M có giá 150.000đ, tồn kho 10 đủ đáp ứng số lượng 2. Tổng tiền hàng 300.000đ đạt điều kiện freeship theo chính sách.",
+      "output": {
+        "items": [{"sku": "AT-TRG-M", "qty": 2, "unit_price": 150000}],
+        "subtotal": 300000,
+        "shipping_fee": 0,
+        "total": 300000
+      }
+    },
+    {
+      "step": "B5",
+      "reasoning": "Tất cả các bước trước đều hợp lệ và khớp chính sách. Tiến hành xác nhận đơn hàng cho khách và xuất bản ghi nội bộ.",
+      "output": {
+        "reply_ready": true
+      }
+    }
+  ],
+  "data": {
+    "customer_name": "Lan",
+    "phone": "0912345678",
+    "address": "45 Nguyễn Trãi, Q5",
+    "delivery_time": "chiều mai",
+    "items": [{"sku": "AT-TRG-M", "qty": 2, "unit_price": 150000}],
+    "total": 300000
+  },
+  "missing_fields": [],
+  "retry_count": 0,
+  "confidence": "high",
+  "error_code": "",
+  "customer_reply": "Dạ chào chị Lan, shop đã ghi nhận đơn đặt 2 Áo thun trắng size M (tổng 300.000đ, miễn phí giao hàng) giao về 45 Nguyễn Trãi, Q5 vào chiều mai (SĐT: 0912345678). Cảm ơn chị đã ủng hộ shop ạ!",
+  "internal_note": "Đơn hợp lệ. Mã AT-TRG-M (SL: 2), freeship đơn từ 300k.",
+  "escalate_to_human": false
+}
